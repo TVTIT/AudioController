@@ -1,0 +1,9 @@
+C:\Users\Tran Tan Dung\Documents\Visual Studio 2013\Projects\AudioControler\Github\AudioController\source\AudioControler\bin\Debug\AudioController.exe.config
+C:\Users\Tran Tan Dung\Documents\Visual Studio 2013\Projects\AudioControler\Github\AudioController\source\AudioControler\bin\Debug\AudioController.exe
+C:\Users\Tran Tan Dung\Documents\Visual Studio 2013\Projects\AudioControler\Github\AudioController\source\AudioControler\bin\Debug\AudioController.pdb
+C:\Users\Tran Tan Dung\Documents\Visual Studio 2013\Projects\AudioControler\Github\AudioController\source\AudioControler\obj\Debug\AudioController.csprojResolveAssemblyReference.cache
+C:\Users\Tran Tan Dung\Documents\Visual Studio 2013\Projects\AudioControler\Github\AudioController\source\AudioControler\obj\Debug\AudioController.frmSetting.resources
+C:\Users\Tran Tan Dung\Documents\Visual Studio 2013\Projects\AudioControler\Github\AudioController\source\AudioControler\obj\Debug\AudioController.Properties.Resources.resources
+C:\Users\Tran Tan Dung\Documents\Visual Studio 2013\Projects\AudioControler\Github\AudioController\source\AudioControler\obj\Debug\AudioController.csproj.GenerateResource.Cache
+C:\Users\Tran Tan Dung\Documents\Visual Studio 2013\Projects\AudioControler\Github\AudioController\source\AudioControler\obj\Debug\AudioController.exe
+C:\Users\Tran Tan Dung\Documents\Visual Studio 2013\Projects\AudioControler\Github\AudioController\source\AudioControler\obj\Debug\AudioController.pdb
