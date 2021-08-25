@@ -14,6 +14,9 @@ namespace AudioController
         public static Keys Volume_Down;
         public static Keys Volume_Up;
 
+        /// <summary>
+        /// Keybd_event: https://docs.microsoft.com/en-us/windows/win32/api/winuser/nf-winuser-keybd_event
+        /// </summary>
         #region Keybd Event
         private const int KEYEVENTF_EXTENTEDKEY = 1;
         private const int KEYEVENTF_KEYUP = 0;
@@ -28,6 +31,9 @@ namespace AudioController
         private static extern void keybd_event(byte virtualKey, byte scanCode, uint flags, IntPtr extraInfo);
         #endregion
 
+        /// <summary>
+        /// Low level keyboard hook: https://docs.microsoft.com/en-us/archive/blogs/toub/low-level-keyboard-hook-in-c
+        /// </summary>
         #region Hook Keyboard
         private const int WH_KEYBOARD_LL = 13;
         private const int WM_KEYDOWN = 0x0100;

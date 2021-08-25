@@ -8,6 +8,10 @@ using System.Security.Permissions;
 
 namespace System.Windows.Forms
 {
+    /// <summary>
+    /// MessageBoxManager class: https://www.codeproject.com/Articles/18399/Localizing-System-MessageBox
+    /// Thanks for: Alex C. Duma
+    /// </summary>
     public class MessageBoxManager
     {
         private delegate IntPtr HookProc(int nCode, IntPtr wParam, IntPtr lParam);
