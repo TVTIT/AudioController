@@ -30,12 +30,12 @@
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmAbout));
             this.groupBox1 = new System.Windows.Forms.GroupBox();
-            this.label1 = new System.Windows.Forms.Label();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
+            this.label1 = new System.Windows.Forms.Label();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
-            this.btnFb = new System.Windows.Forms.Button();
-            this.btnGmail = new System.Windows.Forms.Button();
             this.btnGithub = new System.Windows.Forms.Button();
+            this.btnGmail = new System.Windows.Forms.Button();
+            this.btnFb = new System.Windows.Forms.Button();
             this.groupBox1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.groupBox2.SuspendLayout();
@@ -43,24 +43,13 @@
             // 
             // groupBox1
             // 
-            this.groupBox1.Controls.Add(this.pictureBox1);
             this.groupBox1.Controls.Add(this.label1);
+            this.groupBox1.Controls.Add(this.pictureBox1);
             this.groupBox1.Location = new System.Drawing.Point(12, 12);
             this.groupBox1.Name = "groupBox1";
             this.groupBox1.Size = new System.Drawing.Size(409, 75);
             this.groupBox1.TabIndex = 0;
             this.groupBox1.TabStop = false;
-            // 
-            // label1
-            // 
-            this.label1.AutoSize = true;
-            this.label1.Font = new System.Drawing.Font("Tahoma", 8.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label1.Location = new System.Drawing.Point(75, 26);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(300, 28);
-            this.label1.TabIndex = 1;
-            this.label1.Text = "Audio Controller - Điều khiển nhạc bằng bàn phím\r\nCopyright © Trung.The This 2021" +
-    ". All rights reserved\r\n";
             // 
             // pictureBox1
             // 
@@ -70,6 +59,16 @@
             this.pictureBox1.Size = new System.Drawing.Size(55, 55);
             this.pictureBox1.TabIndex = 1;
             this.pictureBox1.TabStop = false;
+            // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Font = new System.Drawing.Font("Tahoma", 8.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label1.Location = new System.Drawing.Point(75, 26);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(300, 28);
+            this.label1.TabIndex = 1;
+            this.label1.Text = "Audio Controller v" + Updates.CurrentVer().ToString() + " - Điều khiển nhạc bằng bàn phím\r\nCopyright © Trung.The This 2021. All rights reserved\r\n";
             // 
             // groupBox2
             // 
@@ -81,17 +80,17 @@
             this.groupBox2.Size = new System.Drawing.Size(409, 125);
             this.groupBox2.TabIndex = 2;
             this.groupBox2.TabStop = false;
-            this.groupBox2.Text = "Liên hệ với mình tại";
+            this.groupBox2.Text = "Liên hệ với mình tại:";
             // 
-            // btnFb
+            // btnGithub
             // 
-            this.btnFb.Image = ((System.Drawing.Image)(resources.GetObject("btnFb.Image")));
-            this.btnFb.Location = new System.Drawing.Point(177, 38);
-            this.btnFb.Name = "btnFb";
-            this.btnFb.Size = new System.Drawing.Size(62, 62);
-            this.btnFb.TabIndex = 0;
-            this.btnFb.UseVisualStyleBackColor = true;
-            this.btnFb.Click += new System.EventHandler(this.btnFb_Click);
+            this.btnGithub.Image = ((System.Drawing.Image)(resources.GetObject("btnGithub.Image")));
+            this.btnGithub.Location = new System.Drawing.Point(305, 38);
+            this.btnGithub.Name = "btnGithub";
+            this.btnGithub.Size = new System.Drawing.Size(62, 62);
+            this.btnGithub.TabIndex = 2;
+            this.btnGithub.UseVisualStyleBackColor = true;
+            this.btnGithub.Click += new System.EventHandler(this.btnGithub_Click);
             // 
             // btnGmail
             // 
@@ -103,15 +102,15 @@
             this.btnGmail.UseVisualStyleBackColor = true;
             this.btnGmail.Click += new System.EventHandler(this.btnGmail_Click);
             // 
-            // btnGithub
+            // btnFb
             // 
-            this.btnGithub.Image = ((System.Drawing.Image)(resources.GetObject("btnGithub.Image")));
-            this.btnGithub.Location = new System.Drawing.Point(305, 38);
-            this.btnGithub.Name = "btnGithub";
-            this.btnGithub.Size = new System.Drawing.Size(62, 62);
-            this.btnGithub.TabIndex = 2;
-            this.btnGithub.UseVisualStyleBackColor = true;
-            this.btnGithub.Click += new System.EventHandler(this.btnGithub_Click);
+            this.btnFb.Image = ((System.Drawing.Image)(resources.GetObject("btnFb.Image")));
+            this.btnFb.Location = new System.Drawing.Point(177, 38);
+            this.btnFb.Name = "btnFb";
+            this.btnFb.Size = new System.Drawing.Size(62, 62);
+            this.btnFb.TabIndex = 0;
+            this.btnFb.UseVisualStyleBackColor = true;
+            this.btnFb.Click += new System.EventHandler(this.btnFb_Click);
             // 
             // frmAbout
             // 
