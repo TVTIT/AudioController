@@ -14,7 +14,6 @@ namespace AudioController
         {
             InitializeComponent();
             StartPosition = FormStartPosition.CenterScreen;
-            Shown += frmCountdown_Shown;
         }
 
         private string XuLyStr(int i)
@@ -41,7 +40,7 @@ namespace AudioController
         {
             if (sec == 0)
             {
-                sec = 60;
+                sec = 59;
                 min--;
             }
             else
@@ -67,10 +66,10 @@ namespace AudioController
             numSec.Visible = false;
             lbMin.Visible = false;
             lbSec.Visible = false;
-            lbTimer.Visible = true;
             min = (int)numMin.Value;
             sec = (int)numSec.Value;
             lbTimer.Text = XuLyStr(min) + ":" + XuLyStr(sec);
+            lbTimer.Visible = true;
             timerGUI.Start();
         }
 
@@ -109,11 +108,6 @@ namespace AudioController
                 numSec.Value = numSec.Minimum + 1;
             if (numSec.Value < numSec.Minimum + 1)
                 numSec.Value = numSec.Maximum - 1;
-        }
-
-        private void frmCountdown_Shown(object sender, EventArgs e)
-        {
-            
         }
     }
 }

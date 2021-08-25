@@ -71,7 +71,7 @@
             // 
             this.numSec.Location = new System.Drawing.Point(233, 31);
             this.numSec.Maximum = new decimal(new int[] {
-            61,
+            60,
             0,
             0,
             0});
