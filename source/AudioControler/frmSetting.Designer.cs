@@ -168,7 +168,7 @@ namespace AudioController
             this.btnBindPP.Location = new System.Drawing.Point(212, 24);
             this.btnBindPP.Name = "btnBindPP";
             this.btnBindPP.Size = new System.Drawing.Size(73, 25);
-            this.btnBindPP.TabIndex = 5;
+            this.btnBindPP.TabIndex = 2;
             this.btnBindPP.Text = "Gán phím";
             this.btnBindPP.UseVisualStyleBackColor = true;
             this.btnBindPP.Click += new System.EventHandler(this.btnBindPP_Click);
@@ -188,7 +188,7 @@ namespace AudioController
             this.btnPrev.Location = new System.Drawing.Point(212, 57);
             this.btnPrev.Name = "btnPrev";
             this.btnPrev.Size = new System.Drawing.Size(73, 25);
-            this.btnPrev.TabIndex = 7;
+            this.btnPrev.TabIndex = 4;
             this.btnPrev.Text = "Gán phím";
             this.btnPrev.UseVisualStyleBackColor = true;
             this.btnPrev.Click += new System.EventHandler(this.btnPrev_Click);
@@ -258,7 +258,7 @@ namespace AudioController
             this.btnClrUp.Location = new System.Drawing.Point(292, 191);
             this.btnClrUp.Name = "btnClrUp";
             this.btnClrUp.Size = new System.Drawing.Size(73, 25);
-            this.btnClrUp.TabIndex = 25;
+            this.btnClrUp.TabIndex = 13;
             this.btnClrUp.Text = "Xoá phím";
             this.btnClrUp.UseVisualStyleBackColor = true;
             this.btnClrUp.Click += new System.EventHandler(this.btnClrUp_Click);
@@ -268,7 +268,7 @@ namespace AudioController
             this.btnClrMute.Location = new System.Drawing.Point(292, 124);
             this.btnClrMute.Name = "btnClrMute";
             this.btnClrMute.Size = new System.Drawing.Size(73, 25);
-            this.btnClrMute.TabIndex = 24;
+            this.btnClrMute.TabIndex = 9;
             this.btnClrMute.Text = "Xoá phím";
             this.btnClrMute.UseVisualStyleBackColor = true;
             this.btnClrMute.Click += new System.EventHandler(this.btnClrMute_Click);
@@ -278,7 +278,7 @@ namespace AudioController
             this.btnClrDwn.Location = new System.Drawing.Point(292, 157);
             this.btnClrDwn.Name = "btnClrDwn";
             this.btnClrDwn.Size = new System.Drawing.Size(73, 25);
-            this.btnClrDwn.TabIndex = 23;
+            this.btnClrDwn.TabIndex = 11;
             this.btnClrDwn.Text = "Xoá phím";
             this.btnClrDwn.UseVisualStyleBackColor = true;
             this.btnClrDwn.Click += new System.EventHandler(this.btnClrDwn_Click);
@@ -288,7 +288,7 @@ namespace AudioController
             this.btnClrPrev.Location = new System.Drawing.Point(292, 57);
             this.btnClrPrev.Name = "btnClrPrev";
             this.btnClrPrev.Size = new System.Drawing.Size(73, 25);
-            this.btnClrPrev.TabIndex = 22;
+            this.btnClrPrev.TabIndex = 5;
             this.btnClrPrev.Text = "Xoá phím";
             this.btnClrPrev.UseVisualStyleBackColor = true;
             this.btnClrPrev.Click += new System.EventHandler(this.btnClrPrev_Click);
@@ -298,7 +298,7 @@ namespace AudioController
             this.btnClrPP.Location = new System.Drawing.Point(292, 24);
             this.btnClrPP.Name = "btnClrPP";
             this.btnClrPP.Size = new System.Drawing.Size(73, 25);
-            this.btnClrPP.TabIndex = 20;
+            this.btnClrPP.TabIndex = 3;
             this.btnClrPP.Text = "Xoá phím";
             this.btnClrPP.UseVisualStyleBackColor = true;
             this.btnClrPP.Click += new System.EventHandler(this.btnClrPP_Click);
@@ -308,7 +308,7 @@ namespace AudioController
             this.btnClrNext.Location = new System.Drawing.Point(292, 90);
             this.btnClrNext.Name = "btnClrNext";
             this.btnClrNext.Size = new System.Drawing.Size(73, 25);
-            this.btnClrNext.TabIndex = 21;
+            this.btnClrNext.TabIndex = 7;
             this.btnClrNext.Text = "Xoá phím";
             this.btnClrNext.UseVisualStyleBackColor = true;
             this.btnClrNext.Click += new System.EventHandler(this.btnClrNext_Click);
@@ -337,7 +337,7 @@ namespace AudioController
             this.btnVlUp.Location = new System.Drawing.Point(212, 191);
             this.btnVlUp.Name = "btnVlUp";
             this.btnVlUp.Size = new System.Drawing.Size(73, 25);
-            this.btnVlUp.TabIndex = 18;
+            this.btnVlUp.TabIndex = 12;
             this.btnVlUp.Text = "Gán phím";
             this.btnVlUp.UseVisualStyleBackColor = true;
             this.btnVlUp.Click += new System.EventHandler(this.btnVlUp_Click);
@@ -366,7 +366,7 @@ namespace AudioController
             this.btnVlMute.Location = new System.Drawing.Point(212, 124);
             this.btnVlMute.Name = "btnVlMute";
             this.btnVlMute.Size = new System.Drawing.Size(73, 25);
-            this.btnVlMute.TabIndex = 15;
+            this.btnVlMute.TabIndex = 8;
             this.btnVlMute.Text = "Gán phím";
             this.btnVlMute.UseVisualStyleBackColor = true;
             this.btnVlMute.Click += new System.EventHandler(this.btnVlMute_Click);
@@ -395,7 +395,7 @@ namespace AudioController
             this.btnVlDwn.Location = new System.Drawing.Point(212, 157);
             this.btnVlDwn.Name = "btnVlDwn";
             this.btnVlDwn.Size = new System.Drawing.Size(73, 25);
-            this.btnVlDwn.TabIndex = 12;
+            this.btnVlDwn.TabIndex = 10;
             this.btnVlDwn.Text = "Gán phím";
             this.btnVlDwn.UseVisualStyleBackColor = true;
             this.btnVlDwn.Click += new System.EventHandler(this.btnVlDwn_Click);

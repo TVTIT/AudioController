@@ -16,7 +16,8 @@ namespace AudioController
         private bool ckstartup;
         private bool is_setting_saved = true;
         private bool autoUpdates;
-        public static frmCountdown countdown;
+        private frmCountdown countdown;
+        private frmAbout about;
 
         public frmSetting()
         {
@@ -316,15 +317,22 @@ namespace AudioController
 
         private void aboutToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            new frmAbout() { WindowState = FormWindowState.Normal }.Show();
+            if (about == null)
+                about = new frmAbout();
+            else if (about.IsDisposed)
+                about = new frmAbout();
+            about.WindowState = FormWindowState.Normal;
+            about.Show();
         }
 
         private void toolStripMenuItem1_Click(object sender, EventArgs e)
         {
-            if (!frmCountdown.is_running)
+            if (countdown == null)
                 countdown = new frmCountdown();
-            countdown.Show();
+            else if (countdown.IsDisposed)
+                countdown = new frmCountdown();
             countdown.WindowState = FormWindowState.Normal;
+            countdown.Show();
         }
 
         private void btnCheckUpdates_Click(object sender, EventArgs e)

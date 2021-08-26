@@ -6,14 +6,13 @@ namespace AudioController
 {
     public partial class frmCountdown : Form
     {
-        public static bool is_running = false;
+        public bool is_running = false;
         private int min;
         private int sec;
 
         public frmCountdown()
         {
             InitializeComponent();
-            StartPosition = FormStartPosition.CenterScreen;
         }
 
         private string XuLyStr(int i)
