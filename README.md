@@ -1,11 +1,11 @@
 # Audio Controller
-**`AudioController`** là phần mềm dùng bàn phím để điều khiển nhạc (Play/Pause, Next bài,...).
+**`Audio Controller`** là phần mềm dùng bàn phím để điều khiển nhạc (Play/Pause, Next bài,...) được làm bằng sự rảnh rỗi của mình trong mùa dịch :v. Mình là một người khá là thích nghe nhạc, mà lần lúc nào muốn Pause nhạc để làm việc khác thì cứ phải Alt+Tab sang phần mềm nghe nhạc rồi mới pause được, khá là bất tiện (đối với mình thôi :)). Thì mình có lên google tìm kiếm xem có phần mềm nào hỗ trợ không, tuy nhiên thì khá là ít, và nó khá nặng nữa, nên là mình ngồi làm ra cái **`Audio Controller`** này luôn.
 
 ## Tính năng
-- Điều khiển nhạc (Play/Pause, Chuyển bài), điều chỉnh âm lượng (tăng/giảm, mute)
+- Điều khiển nhạc (Play/Pause, Chuyển bài), điều chỉnh âm lượng (tăng/giảm, mute) bất kể phần mềm phát nhạc/video nào cũng hỗ trợ (có 1 số phần mềm, website không chuyển bài được)
 - Hẹn giờ tắt nhạc (tính năng này chắc ít người dùng :v) (hơn nữa nó đang được thử nghiệm)
 
-## Tại sao nên dùng Audio Controller?
+## Tại sao nên dùng **`Audio Controller`** ?
 - Thứ nhất là vì nó rất nhẹ (chưa đến 1Mb), ngoài ra nó còn chạy ngầm chiếm tài nguyên không đáng kể
 - Và quan trọng là nó Miễn phí và mã nguồn mở (Open source) nên bạn có thể hoàn toàn yên tâm sử dụng
 
