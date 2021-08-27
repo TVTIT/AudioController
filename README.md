@@ -11,7 +11,7 @@
 
 ## Yêu cầu hệ thống
 - Windows 7 trở lên (7, 8, 8.1, 10, 11)
-- Đã cài .NET Framework 4 hoặc cao hơn (bạn có thể cài [.NET Framework 4.8](https://go.microsoft.com/fwlink/?linkid=2088631)
+- Đã cài .NET Framework 4 hoặc cao hơn (bạn có thể cài [.NET Framework 4.8](https://go.microsoft.com/fwlink/?linkid=2088631))
 
 ## Cách dùng
 - Trước hết là bạn hãy download phiên bản mới nhất của Audio Controller ở phần [Release](https://github.com/TVTIT/AudioController/releases//)
