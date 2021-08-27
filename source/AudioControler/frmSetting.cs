@@ -10,7 +10,7 @@ namespace AudioController
 {
     public partial class frmSetting : Form
     {
-
+        private bool is_starting = true;
         private bool ForceClose = false;
         private KeysConverter kc = new KeysConverter();
         private bool ckstartup;
@@ -26,7 +26,7 @@ namespace AudioController
             Load_Setting(true);
             hook.RunWorkerAsync();
             ChangeMessageBoxText();
-            
+            is_starting = false;
         }
 
         private void CheckProcess()
@@ -64,7 +64,7 @@ namespace AudioController
         {
             if (!is_setting_saved)
             {
-                DialogResult result = MessageBox.Show("Bạn có muốn lưu cài đặt không?", "CÀI ĐẶT", MessageBoxButtons.YesNoCancel, MessageBoxIcon.Information);
+                DialogResult result = MessageBox.Show("Bạn có muốn lưu cài đặt không?", "Lưu cài đặt", MessageBoxButtons.YesNoCancel, MessageBoxIcon.Information);
                 if (result == DialogResult.Yes)
                     btnSaveSetting.PerformClick();
                 else if (result == DialogResult.No)
@@ -108,15 +108,16 @@ namespace AudioController
         private void exitToolStripMenuItem_Click(object sender, EventArgs e)
         {
             ForceClose = true;
+            Form1_FormClosing(null, new FormClosingEventArgs(CloseReason.ApplicationExitCall, false));
+            hook.CancelAsync();
             Application.Exit();    //Some time not working (I don't know why)
             //Application.ExitThread();
         }
 
         private void settingToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            is_setting_saved = true;
             ShowInTaskbar = true;
-            this.WindowState = FormWindowState.Normal;
+            WindowState = FormWindowState.Normal;
             Show();
         }
 
@@ -342,12 +343,12 @@ namespace AudioController
 
         private void ckbStartup_CheckedChanged(object sender, EventArgs e)
         {
-            is_setting_saved = false;
+            is_setting_saved = (is_starting) ? is_setting_saved : false;
         }
 
         private void ckbCheckUpdates_CheckedChanged(object sender, EventArgs e)
         {
-            is_setting_saved = false;
+            is_setting_saved = (is_starting) ? is_setting_saved : false;
         }
     }
 }
