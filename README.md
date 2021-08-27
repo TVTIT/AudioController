@@ -9,6 +9,10 @@
 - Thứ nhất là vì nó rất nhẹ (chưa đến 1Mb), ngoài ra nó còn chạy ngầm chiếm tài nguyên không đáng kể
 - Và quan trọng là nó Miễn phí và mã nguồn mở (Open source) nên bạn có thể hoàn toàn yên tâm sử dụng
 
+## Yêu cầu hệ thống
+- Windows 7 trở lên (7, 8, 8.1, 10, 11)
+- Đã cài .NET Framework 4 hoặc cao hơn (bạn có thể cài [.NET Framework 4.8](https://go.microsoft.com/fwlink/?linkid=2088631)
+
 ## Cách dùng
 - Trước hết là bạn hãy download phiên bản mới nhất của Audio Controller ở phần [Release](https://github.com/TVTIT/AudioController/releases//)
 - Sau khi mở được phần mềm, bạn hãy click chuột phải vào icon ở dưới thanh taskbar, chọn Cài đặt
