@@ -36,6 +36,7 @@ namespace AudioController
             this.notifyIcon1 = new System.Windows.Forms.NotifyIcon(this.components);
             this.contextMenuStrip1 = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.aboutToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.preventSleepToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
             this.settingToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.exitToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -74,6 +75,7 @@ namespace AudioController
             // 
             // hook
             // 
+            this.hook.WorkerSupportsCancellation = true;
             this.hook.DoWork += new System.ComponentModel.DoWorkEventHandler(this.hook_DoWork);
             // 
             // notifyIcon1
@@ -82,29 +84,38 @@ namespace AudioController
             this.notifyIcon1.Icon = ((System.Drawing.Icon)(resources.GetObject("notifyIcon1.Icon")));
             this.notifyIcon1.Text = "Audio Controller";
             this.notifyIcon1.Visible = true;
+            this.notifyIcon1.MouseDoubleClick += new System.Windows.Forms.MouseEventHandler(this.notifyIcon1_MouseDoubleClick);
             // 
             // contextMenuStrip1
             // 
             this.contextMenuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.aboutToolStripMenuItem,
+            this.preventSleepToolStripMenuItem,
             this.toolStripMenuItem1,
             this.settingToolStripMenuItem,
             this.exitToolStripMenuItem});
             this.contextMenuStrip1.Name = "contextMenuStrip1";
-            this.contextMenuStrip1.Size = new System.Drawing.Size(199, 92);
+            this.contextMenuStrip1.Size = new System.Drawing.Size(213, 114);
             // 
             // aboutToolStripMenuItem
             // 
             this.aboutToolStripMenuItem.Name = "aboutToolStripMenuItem";
             this.aboutToolStripMenuItem.RightToLeft = System.Windows.Forms.RightToLeft.No;
-            this.aboutToolStripMenuItem.Size = new System.Drawing.Size(198, 22);
+            this.aboutToolStripMenuItem.Size = new System.Drawing.Size(212, 22);
             this.aboutToolStripMenuItem.Text = "About Audio Controller";
             this.aboutToolStripMenuItem.Click += new System.EventHandler(this.aboutToolStripMenuItem_Click);
+            // 
+            // preventSleepToolStripMenuItem
+            // 
+            this.preventSleepToolStripMenuItem.Name = "preventSleepToolStripMenuItem";
+            this.preventSleepToolStripMenuItem.Size = new System.Drawing.Size(212, 22);
+            this.preventSleepToolStripMenuItem.Text = "Không sleep/tắt màn hình";
+            this.preventSleepToolStripMenuItem.Click += new System.EventHandler(this.preventSleepToolStripMenuItem_Click);
             // 
             // toolStripMenuItem1
             // 
             this.toolStripMenuItem1.Name = "toolStripMenuItem1";
-            this.toolStripMenuItem1.Size = new System.Drawing.Size(198, 22);
+            this.toolStripMenuItem1.Size = new System.Drawing.Size(212, 22);
             this.toolStripMenuItem1.Text = "Hẹn giờ tắt nhạc";
             this.toolStripMenuItem1.Click += new System.EventHandler(this.toolStripMenuItem1_Click);
             // 
@@ -112,14 +123,14 @@ namespace AudioController
             // 
             this.settingToolStripMenuItem.Name = "settingToolStripMenuItem";
             this.settingToolStripMenuItem.RightToLeft = System.Windows.Forms.RightToLeft.No;
-            this.settingToolStripMenuItem.Size = new System.Drawing.Size(198, 22);
+            this.settingToolStripMenuItem.Size = new System.Drawing.Size(212, 22);
             this.settingToolStripMenuItem.Text = "Cài đặt";
             this.settingToolStripMenuItem.Click += new System.EventHandler(this.settingToolStripMenuItem_Click);
             // 
             // exitToolStripMenuItem
             // 
             this.exitToolStripMenuItem.Name = "exitToolStripMenuItem";
-            this.exitToolStripMenuItem.Size = new System.Drawing.Size(198, 22);
+            this.exitToolStripMenuItem.Size = new System.Drawing.Size(212, 22);
             this.exitToolStripMenuItem.Text = "Thoát";
             this.exitToolStripMenuItem.Click += new System.EventHandler(this.exitToolStripMenuItem_Click);
             // 
@@ -135,33 +146,27 @@ namespace AudioController
             // 
             // tbBindPP
             // 
-            this.tbBindPP.Enabled = false;
             this.tbBindPP.Location = new System.Drawing.Point(122, 24);
             this.tbBindPP.Name = "tbBindPP";
+            this.tbBindPP.ReadOnly = true;
             this.tbBindPP.Size = new System.Drawing.Size(82, 21);
             this.tbBindPP.TabIndex = 2;
-            this.tbBindPP.KeyDown += new System.Windows.Forms.KeyEventHandler(this.tbBindPP_KeyDown);
-            this.tbBindPP.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.tbBindPP_KeyPress);
             // 
             // tbBindNext
             // 
-            this.tbBindNext.Enabled = false;
             this.tbBindNext.Location = new System.Drawing.Point(122, 90);
             this.tbBindNext.Name = "tbBindNext";
+            this.tbBindNext.ReadOnly = true;
             this.tbBindNext.Size = new System.Drawing.Size(82, 21);
-            this.tbBindNext.TabIndex = 3;
-            this.tbBindNext.KeyDown += new System.Windows.Forms.KeyEventHandler(this.tbBindNext_KeyDown);
-            this.tbBindNext.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.tbBindNext_KeyPress);
+            this.tbBindNext.TabIndex = 5;
             // 
             // tbBindPrev
             // 
-            this.tbBindPrev.Enabled = false;
             this.tbBindPrev.Location = new System.Drawing.Point(122, 57);
             this.tbBindPrev.Name = "tbBindPrev";
+            this.tbBindPrev.ReadOnly = true;
             this.tbBindPrev.Size = new System.Drawing.Size(82, 21);
             this.tbBindPrev.TabIndex = 4;
-            this.tbBindPrev.KeyDown += new System.Windows.Forms.KeyEventHandler(this.tbBindPrev_KeyDown);
-            this.tbBindPrev.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.tbBindPrev_KeyPress);
             // 
             // btnBindPP
             // 
@@ -258,7 +263,7 @@ namespace AudioController
             this.btnClrUp.Location = new System.Drawing.Point(292, 191);
             this.btnClrUp.Name = "btnClrUp";
             this.btnClrUp.Size = new System.Drawing.Size(73, 25);
-            this.btnClrUp.TabIndex = 13;
+            this.btnClrUp.TabIndex = 16;
             this.btnClrUp.Text = "Xoá phím";
             this.btnClrUp.UseVisualStyleBackColor = true;
             this.btnClrUp.Click += new System.EventHandler(this.btnClrUp_Click);
@@ -268,7 +273,7 @@ namespace AudioController
             this.btnClrMute.Location = new System.Drawing.Point(292, 124);
             this.btnClrMute.Name = "btnClrMute";
             this.btnClrMute.Size = new System.Drawing.Size(73, 25);
-            this.btnClrMute.TabIndex = 9;
+            this.btnClrMute.TabIndex = 10;
             this.btnClrMute.Text = "Xoá phím";
             this.btnClrMute.UseVisualStyleBackColor = true;
             this.btnClrMute.Click += new System.EventHandler(this.btnClrMute_Click);
@@ -278,7 +283,7 @@ namespace AudioController
             this.btnClrDwn.Location = new System.Drawing.Point(292, 157);
             this.btnClrDwn.Name = "btnClrDwn";
             this.btnClrDwn.Size = new System.Drawing.Size(73, 25);
-            this.btnClrDwn.TabIndex = 11;
+            this.btnClrDwn.TabIndex = 13;
             this.btnClrDwn.Text = "Xoá phím";
             this.btnClrDwn.UseVisualStyleBackColor = true;
             this.btnClrDwn.Click += new System.EventHandler(this.btnClrDwn_Click);
@@ -324,20 +329,18 @@ namespace AudioController
             // 
             // tbVlUp
             // 
-            this.tbVlUp.Enabled = false;
             this.tbVlUp.Location = new System.Drawing.Point(122, 191);
             this.tbVlUp.Name = "tbVlUp";
+            this.tbVlUp.ReadOnly = true;
             this.tbVlUp.Size = new System.Drawing.Size(82, 21);
-            this.tbVlUp.TabIndex = 17;
-            this.tbVlUp.KeyDown += new System.Windows.Forms.KeyEventHandler(this.tbVlUp_KeyDown);
-            this.tbVlUp.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.tbVlUp_KeyPress);
+            this.tbVlUp.TabIndex = 14;
             // 
             // btnVlUp
             // 
             this.btnVlUp.Location = new System.Drawing.Point(212, 191);
             this.btnVlUp.Name = "btnVlUp";
             this.btnVlUp.Size = new System.Drawing.Size(73, 25);
-            this.btnVlUp.TabIndex = 12;
+            this.btnVlUp.TabIndex = 15;
             this.btnVlUp.Text = "Gán phím";
             this.btnVlUp.UseVisualStyleBackColor = true;
             this.btnVlUp.Click += new System.EventHandler(this.btnVlUp_Click);
@@ -353,20 +356,18 @@ namespace AudioController
             // 
             // tbVlMute
             // 
-            this.tbVlMute.Enabled = false;
             this.tbVlMute.Location = new System.Drawing.Point(122, 124);
             this.tbVlMute.Name = "tbVlMute";
+            this.tbVlMute.ReadOnly = true;
             this.tbVlMute.Size = new System.Drawing.Size(82, 21);
-            this.tbVlMute.TabIndex = 14;
-            this.tbVlMute.KeyDown += new System.Windows.Forms.KeyEventHandler(this.tbVlMute_KeyDown);
-            this.tbVlMute.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.tbVlMute_KeyPress);
+            this.tbVlMute.TabIndex = 8;
             // 
             // btnVlMute
             // 
             this.btnVlMute.Location = new System.Drawing.Point(212, 124);
             this.btnVlMute.Name = "btnVlMute";
             this.btnVlMute.Size = new System.Drawing.Size(73, 25);
-            this.btnVlMute.TabIndex = 8;
+            this.btnVlMute.TabIndex = 9;
             this.btnVlMute.Text = "Gán phím";
             this.btnVlMute.UseVisualStyleBackColor = true;
             this.btnVlMute.Click += new System.EventHandler(this.btnVlMute_Click);
@@ -382,20 +383,18 @@ namespace AudioController
             // 
             // tbVlDwn
             // 
-            this.tbVlDwn.Enabled = false;
             this.tbVlDwn.Location = new System.Drawing.Point(122, 157);
             this.tbVlDwn.Name = "tbVlDwn";
+            this.tbVlDwn.ReadOnly = true;
             this.tbVlDwn.Size = new System.Drawing.Size(82, 21);
             this.tbVlDwn.TabIndex = 11;
-            this.tbVlDwn.KeyDown += new System.Windows.Forms.KeyEventHandler(this.tbVlDwn_KeyDown);
-            this.tbVlDwn.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.tbVlDwn_KeyPress);
             // 
             // btnVlDwn
             // 
             this.btnVlDwn.Location = new System.Drawing.Point(212, 157);
             this.btnVlDwn.Name = "btnVlDwn";
             this.btnVlDwn.Size = new System.Drawing.Size(73, 25);
-            this.btnVlDwn.TabIndex = 10;
+            this.btnVlDwn.TabIndex = 12;
             this.btnVlDwn.Text = "Gán phím";
             this.btnVlDwn.UseVisualStyleBackColor = true;
             this.btnVlDwn.Click += new System.EventHandler(this.btnVlDwn_Click);
@@ -498,6 +497,7 @@ namespace AudioController
         private ToolStripMenuItem toolStripMenuItem1;
         private Button btnCheckUpdates;
         private CheckBox ckbCheckUpdates;
+        private ToolStripMenuItem preventSleepToolStripMenuItem;
     }
 }
 

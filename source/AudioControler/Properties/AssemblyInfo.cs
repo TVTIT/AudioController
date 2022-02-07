@@ -34,6 +34,6 @@ using System.Runtime.InteropServices;
 // [assembly: AssemblyVersion("1.0.*")]
 
 
-//NHỚ SỬA CẢ UPDATES.CS VÀ GITHUB CẢ PROGRAM.CS
+//NHỚ SỬA CẢ GITHUB
 [assembly: AssemblyVersion("1.0")]
 [assembly: AssemblyFileVersion("1.0")]

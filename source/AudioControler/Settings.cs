@@ -38,26 +38,26 @@ namespace AudioController.Properties {
             {
                 CreateStartupTask(Convert.ToBoolean(Default["RunOnStartup"]));
             }
-            ckStartup = Convert.ToBoolean(Default["RunOnStartup"]);
-            PP = (Keys)Default["KeyPPCode"];
-            Prev = (Keys)Default["KeyPrevCode"];
-            Next = (Keys)Default["KeyNextCode"];
-            Volume_Mute = (Keys)Default["KeyVlMuteCode"];
-            Volume_Down = (Keys)Default["KeyVlDownCode"];
-            Volume_Up = (Keys)Default["KeyVlUpCode"];
-            autoUpdates = Convert.ToBoolean(Default["AutoUpdates"]);
+            ckStartup = Default.RunOnStartup;
+            PP = (Keys) Default.KeyPPCode;
+            Prev = (Keys)Default.KeyPrevCode;
+            Next = (Keys) Default.KeyNextCode;
+            Volume_Mute = (Keys)Default.KeyVlMuteCode;
+            Volume_Down = (Keys) Default.KeyVlDownCode;
+            Volume_Up = (Keys)Default.KeyVlUpCode;
+            autoUpdates = Default.AutoUpdates;
         }
          
         public static void Write(bool ckStartup, Keys PP, Keys Prev, Keys Next, Keys Volume_Mute, Keys Volume_Down, Keys Volume_Up, bool autoUpdates)
         {
-            Default["RunOnStartup"] = ckStartup;
-            Default["KeyPPCode"] = (int)PP;
-            Default["KeyPrevCode"] = (int)Prev;
-            Default["KeyNextCode"] = (int)Next;
-            Default["KeyVlMuteCode"] = (int)Volume_Mute;
-            Default["KeyVlDownCode"] = (int)Volume_Down;
-            Default["KeyVlUpCode"] = (int)Volume_Up;
-            Default["AutoUpdates"] = autoUpdates;
+            Default.RunOnStartup = ckStartup;
+            Default.KeyPPCode = (int)PP;
+            Default.KeyPrevCode = (int)Prev;
+            Default.KeyNextCode = (int)Next;
+            Default.KeyVlMuteCode = (int)Volume_Mute;
+            Default.KeyVlDownCode = (int)Volume_Down;
+            Default.KeyVlUpCode = (int) Volume_Up;
+            Default.AutoUpdates = autoUpdates;
             Default.Save();
         }
 

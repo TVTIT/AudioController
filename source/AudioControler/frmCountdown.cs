@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Drawing;
 using System.Windows.Forms;
 
 namespace AudioController
@@ -47,7 +46,7 @@ namespace AudioController
             lbTimer.Text = XuLyStr(min) + ":" + XuLyStr(sec);
             if (min == 0 && sec == 0)
             {
-                HookKeyboard.PlayPauseMusic();
+                HookKeyboard.PauseMusic();
                 timerGUI.Stop();
             }
         }

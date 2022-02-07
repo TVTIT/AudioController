@@ -5,6 +5,7 @@ namespace AudioController
 {
     static class Program
     {
+        public static frmSetting frm;
         /// <summary>
         /// The main entry point for the application.
         /// </summary>
@@ -16,9 +17,10 @@ namespace AudioController
             if (args.Length >= 1)
             {
                 if (args[0] == "/afterupdate")
-                    MessageBox.Show("Cập nhật lên phiên bản " + Updates.CurrentVer().ToString() + " thành công!", "Audio Controller Updates", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    MessageBox.Show($"Cập nhật lên phiên bản {Updates.CurrentVer().ToString()} thành công!", "Audio Controller Updates", MessageBoxButtons.OK, MessageBoxIcon.Information);
             }
-            Application.Run(new frmSetting());
+            frm = new frmSetting();
+            Application.Run(frm);
         }
     }
 }

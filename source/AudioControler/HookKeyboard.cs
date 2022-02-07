@@ -7,22 +7,24 @@ namespace AudioController
 {
     class HookKeyboard
     {
-        public static Keys PP;
+        public static Keys PP; 
         public static Keys Prev;
         public static Keys Next;
-        public static Keys Volume_Mute;
-        public static Keys Volume_Down;
-        public static Keys Volume_Up;
+        public static Keys Volume_Mute; 
+        public static Keys Volume_Down; 
+        public static Keys Volume_Up; 
+
+        public static bool is_binding = false;
+        public static Keys KeyBinding { get; set; }
 
         /// <summary>
         /// Keybd_event: https://docs.microsoft.com/en-us/windows/win32/api/winuser/nf-winuser-keybd_event
         /// </summary>
         #region Keybd Event
-        private const int KEYEVENTF_EXTENTEDKEY = 1;
-        private const int KEYEVENTF_KEYUP = 0;
         private const int VK_MEDIA_NEXT_TRACK = 0xB0;
         private const int VK_MEDIA_PLAY_PAUSE = 0xB3;
         private const int VK_MEDIA_PREV_TRACK = 0xB1;
+        private const int VK_MEDIA_STOP = 0xB2;
         private const int VK_VOLUME_MUTE = 0xAD;
         private const int VK_VOLUME_DOWN = 0xAE;
         private const int VK_VOLUME_UP = 0xAF;
@@ -35,6 +37,8 @@ namespace AudioController
         /// Low level keyboard hook: https://docs.microsoft.com/en-us/archive/blogs/toub/low-level-keyboard-hook-in-c
         /// </summary>
         #region Hook Keyboard
+        private const int KEYEVENTF_EXTENTEDKEY = 1;
+        private const int KEYEVENTF_KEYUP = 0;
         private const int WH_KEYBOARD_LL = 13;
         private const int WM_KEYDOWN = 0x0100;
         private static LowLevelKeyboardProc _proc = HookCallback;
@@ -59,21 +63,30 @@ namespace AudioController
             if (nCode >= 0 && wParam == (IntPtr)WM_KEYDOWN)
             {
                 vkCode = Marshal.ReadInt32(lParam);
-                if ((Keys)vkCode == PP)
-                    keybd_event(VK_MEDIA_PLAY_PAUSE, 0, KEYEVENTF_EXTENTEDKEY, IntPtr.Zero);
-                else if ((Keys)vkCode == Prev)
-                    keybd_event(VK_MEDIA_PREV_TRACK, 0, KEYEVENTF_EXTENTEDKEY, IntPtr.Zero);
-                else if ((Keys)vkCode == Next)
-                    keybd_event(VK_MEDIA_NEXT_TRACK, 0, KEYEVENTF_EXTENTEDKEY, IntPtr.Zero);
-                else if ((Keys)vkCode == Volume_Mute)
-                    keybd_event(VK_VOLUME_MUTE, 0, KEYEVENTF_EXTENTEDKEY, IntPtr.Zero);
-                else if ((Keys)vkCode == Volume_Down)
-                    keybd_event(VK_VOLUME_DOWN, 0, KEYEVENTF_EXTENTEDKEY, IntPtr.Zero);
-                else if ((Keys)vkCode == Volume_Up)
-                    keybd_event(VK_VOLUME_UP, 0, KEYEVENTF_EXTENTEDKEY, IntPtr.Zero);
+                if (is_binding && !string.IsNullOrEmpty(new KeysConverter().ConvertToString((Keys)vkCode)) && (Keys)vkCode != Keys.None)
+                {
+                    KeyBinding = (Keys)vkCode;
+                    is_binding = false;
+                }
+                else if ((Keys)vkCode != Keys.None)
+                {
+                    if ((Keys)vkCode == PP && PP != Keys.None)
+                        keybd_event(VK_MEDIA_PLAY_PAUSE, 0, KEYEVENTF_EXTENTEDKEY, IntPtr.Zero);
+                    else if ((Keys)vkCode == Prev && Prev != Keys.None)
+                        keybd_event(VK_MEDIA_PREV_TRACK, 0, KEYEVENTF_EXTENTEDKEY, IntPtr.Zero);
+                    else if ((Keys)vkCode == Next && Next != Keys.None)
+                        keybd_event(VK_MEDIA_NEXT_TRACK, 0, KEYEVENTF_EXTENTEDKEY, IntPtr.Zero);
+                    else if ((Keys)vkCode == Volume_Mute && Volume_Mute != Keys.None)
+                        keybd_event(VK_VOLUME_MUTE, 0, KEYEVENTF_EXTENTEDKEY, IntPtr.Zero);
+                    else if ((Keys)vkCode == Volume_Down && Volume_Down != Keys.None)
+                        keybd_event(VK_VOLUME_DOWN, 0, KEYEVENTF_EXTENTEDKEY, IntPtr.Zero);
+                    else if ((Keys)vkCode == Volume_Up && Volume_Up != Keys.None)
+                        keybd_event(VK_VOLUME_UP, 0, KEYEVENTF_EXTENTEDKEY, IntPtr.Zero);
+                }
             }
             return CallNextHookEx(_hookID, nCode, wParam, lParam);
         }
+
 
         [DllImport("user32.dll", CharSet = CharSet.Auto, SetLastError = true)]
         private static extern IntPtr SetWindowsHookEx(int idHook,
@@ -98,9 +111,9 @@ namespace AudioController
             UnhookWindowsHookEx(_hookID);
         }
 
-        public static void PlayPauseMusic()
+        public static void PauseMusic()
         {
-            keybd_event(VK_MEDIA_PLAY_PAUSE, 0, KEYEVENTF_EXTENTEDKEY, IntPtr.Zero);
+            keybd_event(VK_MEDIA_STOP, 0, KEYEVENTF_EXTENTEDKEY, IntPtr.Zero);
         }
     }
 }

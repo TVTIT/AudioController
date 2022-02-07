@@ -1,10 +1,8 @@
 ﻿using System;
 using System.ComponentModel;
 using System.Diagnostics;
-using System.Runtime.InteropServices;
 using System.Windows.Forms;
 using AudioController.Properties;
-using System.Net;
 
 namespace AudioController
 {
@@ -20,7 +18,7 @@ namespace AudioController
         private frmAbout about;
 
         public frmSetting()
-        {
+       {
             CheckProcess();
             InitializeComponent();
             Load_Setting(true);
@@ -39,7 +37,7 @@ namespace AudioController
             }
         }
 
-        private void Load_Setting(bool is_startup)
+        public void Load_Setting(bool is_startup)
         {
             Settings.Load(is_startup, out ckstartup, out HookKeyboard.PP, out HookKeyboard.Prev, out HookKeyboard.Next, out HookKeyboard.Volume_Mute, out HookKeyboard.Volume_Down, out HookKeyboard.Volume_Up, out autoUpdates);
             ckbStartup.Checked = ckstartup;
@@ -60,11 +58,12 @@ namespace AudioController
             MessageBoxManager.Register();
         }
 
+
         private void Form1_FormClosing(object sender, FormClosingEventArgs e)
         {
             if (!is_setting_saved)
             {
-                DialogResult result = MessageBox.Show("Bạn có muốn lưu cài đặt không?", "Lưu cài đặt", MessageBoxButtons.YesNoCancel, MessageBoxIcon.Information);
+                DialogResult result = MessageBox.Show("Bạn có muốn lưu cài đặt không ?", "Lưu cài đặt", MessageBoxButtons.YesNoCancel, MessageBoxIcon.Information);
                 if (result == DialogResult.Yes)
                     btnSaveSetting.PerformClick();
                 else if (result == DialogResult.No)
@@ -84,12 +83,7 @@ namespace AudioController
                 Hide();
                 ShowInTaskbar = false;
             }
-            tbBindPP.Enabled = false;
-            tbBindPrev.Enabled = false;
-            tbBindNext.Enabled = false;
-            tbVlMute.Enabled = false;
-            tbVlDwn.Enabled = false;
-            tbVlUp.Enabled = false;
+            ReadOnlyTb(true);
         }
 
         private void hook_DoWork(object sender, DoWorkEventArgs e)
@@ -121,142 +115,76 @@ namespace AudioController
             Show();
         }
 
+        private void DisEnableBtn(bool Enabled)
+        {
+            btnBindPP.Enabled = Enabled;
+            btnPrev.Enabled = Enabled;
+            btnNext.Enabled = Enabled;
+            btnVlMute.Enabled = Enabled;
+            btnVlDwn.Enabled = Enabled;
+            btnVlUp.Enabled = Enabled;
+        }
+
+        private void ReadOnlyTb(bool ReadOnly)
+        {
+            tbBindPP.ReadOnly = ReadOnly;
+            tbBindPrev.ReadOnly = ReadOnly;
+            tbBindNext.ReadOnly = ReadOnly;
+            tbVlMute.ReadOnly = ReadOnly;
+            tbVlDwn.ReadOnly = ReadOnly;
+            tbVlUp.ReadOnly = ReadOnly;
+        }
+
+        private void StartBindKey(Button btn, TextBox tb, ref Keys Bind)
+        {
+            DisEnableBtn(false);
+            is_setting_saved = false;
+            Bind = Keys.None;
+            btn.Enabled = true;
+            tb.ReadOnly = false;
+            tb.Focus();
+            tb.SelectAll();
+            HookKeyboard.is_binding = true;
+            while (HookKeyboard.is_binding)
+            {
+                Application.DoEvents();
+            }
+
+            DisEnableBtn(true);
+            Bind = HookKeyboard.KeyBinding;
+            tb.ReadOnly = true;
+            btnCheckUpdates.Focus();
+            tb.Text = kc.ConvertToString(HookKeyboard.KeyBinding);
+        }
+
         private void btnBindPP_Click(object sender, EventArgs e)
         {
-            is_setting_saved = false;
-            HookKeyboard.PP = Keys.None;
-            tbBindPP.Enabled = true;
-            tbBindPP.Focus();
+            StartBindKey(btnBindPP, tbBindPP, ref HookKeyboard.PP);
         }
 
         private void btnNext_Click(object sender, EventArgs e)
         {
-            is_setting_saved = false;
-            HookKeyboard.Next = Keys.None;
-            tbBindNext.Enabled = true;
-            tbBindNext.Focus();
+            StartBindKey(btnNext, tbBindNext, ref HookKeyboard.Next);
         }
 
         private void btnPrev_Click(object sender, EventArgs e)
         {
-            is_setting_saved = false;
-            HookKeyboard.Prev = Keys.None;
-            tbBindPrev.Enabled = true;
-            tbBindPrev.Focus();
+            StartBindKey(btnPrev, tbBindPrev, ref HookKeyboard.Prev);
         }
 
         private void btnVlMute_Click(object sender, EventArgs e)
         {
-            is_setting_saved = false;
-            HookKeyboard.Volume_Mute = Keys.None;
-            tbVlMute.Enabled = true;
-            tbVlMute.Focus();
+            StartBindKey(btnVlMute, tbVlMute, ref HookKeyboard.Volume_Mute);
         }
 
         private void btnVlUp_Click(object sender, EventArgs e)
         {
-            is_setting_saved = false;
-            HookKeyboard.Volume_Up = Keys.None;
-            tbVlUp.Enabled = true;
-            tbVlUp.Focus();
+            StartBindKey(btnVlUp, tbVlUp, ref HookKeyboard.Volume_Up);
         }
 
         private void btnVlDwn_Click(object sender, EventArgs e)
         {
-            is_setting_saved = false;
-            HookKeyboard.Volume_Down = Keys.None;
-            tbVlDwn.Enabled = true;
-            tbVlDwn.Focus();
-        }
-
-        private void tbBindPP_KeyDown(object sender, KeyEventArgs e)
-        {
-            if (e.KeyCode != Keys.None)
-            {
-                HookKeyboard.PP = e.KeyCode;
-                tbBindPP.Enabled = false;
-                tbBindPP.Text = kc.ConvertToString(HookKeyboard.PP);
-            }
-        }
-
-        private void tbBindPrev_KeyDown(object sender, KeyEventArgs e)
-        {
-            if (e.KeyCode != Keys.None)
-            {
-                HookKeyboard.Prev = e.KeyCode;
-                tbBindPrev.Enabled = false;
-                tbBindPrev.Text = kc.ConvertToString(HookKeyboard.Prev);
-            }
-        }
-
-        private void tbBindNext_KeyDown(object sender, KeyEventArgs e)
-        {
-            if (e.KeyCode != Keys.None)
-            {
-                HookKeyboard.Next = e.KeyCode;
-                tbBindNext.Enabled = false;
-                tbBindNext.Text = kc.ConvertToString(HookKeyboard.Next);
-            }
-        }
-
-        private void tbVlMute_KeyDown(object sender, KeyEventArgs e)
-        {
-            if (e.KeyCode != Keys.None)
-            {
-                HookKeyboard.Volume_Mute = e.KeyCode;
-                tbVlMute.Enabled = false;
-                tbVlMute.Text = kc.ConvertToString(HookKeyboard.Volume_Mute);
-            }
-        }
-
-        private void tbVlDwn_KeyDown(object sender, KeyEventArgs e)
-        {
-            if (e.KeyCode != Keys.None)
-            {
-                HookKeyboard.Volume_Down = e.KeyCode;
-                tbVlDwn.Enabled = false;
-                tbVlDwn.Text = kc.ConvertToString(HookKeyboard.Volume_Down);
-            }
-        }
-
-        private void tbVlUp_KeyDown(object sender, KeyEventArgs e)
-        {
-            if (e.KeyCode != Keys.None)
-            {
-                HookKeyboard.Volume_Up = e.KeyCode;
-                tbVlUp.Enabled = false;
-                tbVlUp.Text = kc.ConvertToString(HookKeyboard.Volume_Up);
-            }
-        }
-
-        private void tbBindPP_KeyPress(object sender, KeyPressEventArgs e)
-        {
-            e.Handled = true;
-        }
-
-        private void tbBindPrev_KeyPress(object sender, KeyPressEventArgs e)
-        {
-            e.Handled = true;
-        }
-
-        private void tbBindNext_KeyPress(object sender, KeyPressEventArgs e)
-        {
-            e.Handled = true;
-        }
-
-        private void tbVlMute_KeyPress(object sender, KeyPressEventArgs e)
-        {
-            e.Handled = true;
-        }
-
-        private void tbVlDwn_KeyPress(object sender, KeyPressEventArgs e)
-        {
-            e.Handled = true;
-        }
-
-        private void tbVlUp_KeyPress(object sender, KeyPressEventArgs e)
-        {
-            e.Handled = true;
+            StartBindKey(btnVlDwn, tbVlDwn, ref HookKeyboard.Volume_Down);
         }
 
         private void btnSaveSetting_Click(object sender, EventArgs e)
@@ -268,52 +196,45 @@ namespace AudioController
             Hide();
         }
 
+        private void UnBind(TextBox tb, out Keys Bind)
+        {
+            DisEnableBtn(true);
+            is_setting_saved = true;
+            HookKeyboard.is_binding = false;
+            is_setting_saved = false;
+            Bind = Keys.None;
+            tb.ReadOnly = true;
+            tb.Text = "None";
+        }
+
         private void btnClrPP_Click(object sender, EventArgs e)
         {
-            is_setting_saved = false;
-            HookKeyboard.PP = Keys.None;
-            tbBindPP.Enabled = false;
-            tbBindPP.Text = "None";
+            UnBind(tbBindPP, out HookKeyboard.PP);
         }
 
         private void btnClrPrev_Click(object sender, EventArgs e)
         {
-            is_setting_saved = false;
-            HookKeyboard.Prev = Keys.None;
-            tbBindPrev.Enabled = false;
-            tbBindPrev.Text = "None";
+            UnBind(tbBindPrev, out HookKeyboard.Prev);
         }
 
         private void btnClrNext_Click(object sender, EventArgs e)
         {
-            is_setting_saved = false;
-            HookKeyboard.Next = Keys.None;
-            tbBindNext.Enabled = false;
-            tbBindNext.Text = "None";
+            UnBind(tbBindNext, out HookKeyboard.Next);
         }
 
         private void btnClrMute_Click(object sender, EventArgs e)
         {
-            is_setting_saved = false;
-            HookKeyboard.Volume_Mute = Keys.None;
-            tbVlMute.Enabled = false;
-            tbVlMute.Text = "None";
+            UnBind(tbVlMute, out HookKeyboard.Volume_Mute);
         }
 
         private void btnClrDwn_Click(object sender, EventArgs e)
         {
-            is_setting_saved = false;
-            HookKeyboard.Volume_Down = Keys.None;
-            tbVlDwn.Enabled = false;
-            tbVlDwn.Text = "None";
+            UnBind(tbVlDwn, out HookKeyboard.Volume_Down);
         }
 
         private void btnClrUp_Click(object sender, EventArgs e)
         {
-            is_setting_saved = false;
-            HookKeyboard.Volume_Up = Keys.None;
-            tbVlUp.Enabled = false;
-            tbVlUp.Text = "None";
+            UnBind(tbVlUp, out HookKeyboard.Volume_Up);
         }
 
         private void aboutToolStripMenuItem_Click(object sender, EventArgs e)
@@ -349,6 +270,17 @@ namespace AudioController
         private void ckbCheckUpdates_CheckedChanged(object sender, EventArgs e)
         {
             is_setting_saved = (is_starting) ? is_setting_saved : false;
+        }
+
+        private void preventSleepToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            PreventSleep.PreventUnPrevent(preventSleepToolStripMenuItem.Checked);
+            preventSleepToolStripMenuItem.Checked = !preventSleepToolStripMenuItem.Checked;
+        }
+
+        private void notifyIcon1_MouseDoubleClick(object sender, MouseEventArgs e)
+        {
+            Show();
         }
     }
 }
